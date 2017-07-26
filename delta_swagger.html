@@ -56,6 +56,10 @@
 		color: red;
 	}
 
+	.purple{
+		color: purple;
+	}
+
 </style>
 
 <body>
@@ -137,19 +141,29 @@
 		for (var k in target){
 
 			if (hasUpperCase(k)){
-				$("#objects").append("<h3 class='red'>" + k + "</h3>");
+				$("#objects").append("<h3 class='red' title='Not in snake_case'>" + k + "</h3>");
 			} else {
 				$("#objects").append("<h3>" + k + "</h3>");
 			}
 
 			for (var j in target[k].properties){
 
+				attribut_type = target[k].properties[j].type
+
     			if (hasUpperCase(j)){
-		    		$("#objects").append("<br><span class='red'>" + j + " - " + target[k].properties[j].type + "</span>");
+		    		$("#objects").append("<br><span class='red' title='Not in snake_case'>" + j + " - " + attribut_type + "</span>");
 		    	} else {
-		    		$("#objects").append("<br><span>" + j + " - " + target[k].properties[j].type + "</span>");
+		    		$("#objects").append("<br><span>" + j + " - " + attribut_type + "</span>");
 		    	}
+
+		    	if (listWithoutS(j, attribut_type)) {
+		    		$("#objects").append("<br><span class='purple' title='Lists must end with: s'>" + j + " - " + attribut_type + "</span>");
+		    	}
+
 	    	}
+
+
+
 
 
 		}
@@ -166,7 +180,12 @@
 		// $("#objects").html(textarea_content);
 
 
-
+	function listWithoutS(attribut_name, attribut_type) {
+        if ((attribut_name.slice(-1) != "s") && attribut_type == 'array') {
+            return true;
+        }
+        return false;
+    }
 	
 
 	function hasUpperCase(str) {
