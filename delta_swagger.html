@@ -52,6 +52,10 @@
 		text-align: left;
 	}
 
+	.red{
+		color: red;
+	}
+
 </style>
 
 <body>
@@ -60,6 +64,15 @@
 <div class='content'>
 
 	<h1>Δ Swagger</h1>
+
+<!-- 
+	Track camelCase
+	Liste sans "s"
+
+ -->
+
+
+
 
 	<form action="#" onchange="compute();">  
 		<div id="swagger1">
@@ -75,8 +88,6 @@
 	<div class="result">
 		<h2>Objets</h2>
 		<div id="objects"></div>
-
-
 	</div>
 
 </div>
@@ -104,15 +115,19 @@
 	var text_swagger1;
 	var test1;
 
+	$(function() {
+		compute();
+	});
+
+
 	function compute() {
+		$("#objects").html("")
+
 		text_swagger1 = $("#swagger1>textarea")[0].value
 		localStorage.setItem("swagger1", text_swagger1);
 		text_swagger2 = $("#swagger2>textarea")[0].value
 		localStorage.setItem("swagger2", text_swagger2);
-		// text_swagger2 = $("#swagger2>textarea")[0].value
-		// Cookies.set("swagger2", text_swagger2);
 
-		// console.log(text_swagger1)
 
 		js_swagger1 = YAML.eval(text_swagger1);
 		str = JSON.stringify(js_swagger1.definitions);
@@ -120,42 +135,39 @@
 		target = js_swagger1.definitions
 		var textarea_content = "";
 		for (var k in target){
-		    if (target.hasOwnProperty(k)) {
-		    	if (hasUpperCase(k)){
-		    		textarea_content += "<br>" + target[k].type + " - " + k;
+
+			if (hasUpperCase(k)){
+				$("#objects").append("<h3 class='red'>" + k + "</h3>");
+			} else {
+				$("#objects").append("<h3>" + k + "</h3>");
+			}
+
+			for (var j in target[k].properties){
+
+    			if (hasUpperCase(j)){
+		    		$("#objects").append("<br><span class='red'>" + j + " - " + target[k].properties[j].type + "</span>");
+		    	} else {
+		    		$("#objects").append("<br><span>" + j + " - " + target[k].properties[j].type + "</span>");
 		    	}
-		    }
+	    	}
+
+
 		}
-		$("#objects").html(textarea_content);
-
-
-		var textarea_content2 = "";
-		for (var k in target){
-		    if (target.hasOwnProperty(k)) {
-
-		    	textarea_content2 += "<br>" + target[k].type + " - " + k;
-
-		    	for (var j in target[k].properties){
-		    		if (target[k].properties.hasOwnProperty(j)) {
-		    			if (hasUpperCase(j)){
-				    		textarea_content2 += "<br>--------- " + j + " - " + target[k].properties[j].type;
-				    	}
-		    		}	
-		    	}
-
-		    	// if (hasUpperCase(k)){
-		    	// 	textarea_content += target[k].type + " - " + k + "&#13;&#10;";
-		    	// }
-
-
-
-		    }
-		}
-		$("#uppercase_attributs").html(textarea_content2);
-
-
-
 	}
+
+
+
+// if (target.hasOwnProperty(k)) {
+// 		    	if (hasUpperCase(k)){
+// 		    		$("#objects").append("<br>" + target[k].type + " - " + k)
+// 		    	}
+// 		    }
+
+		// $("#objects").html(textarea_content);
+
+
+
+	
 
 	function hasUpperCase(str) {
         if(str.toLowerCase() != str) {
