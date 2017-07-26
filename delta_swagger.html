@@ -94,11 +94,11 @@
 	// 	);
 	// });
 
-	if (Cookies.get('swagger1') != null){
-        $("#swagger1>textarea").html(Cookies.get('swagger1'))
+	if (localStorage.getItem("swagger1") != null){
+        $("#swagger1>textarea").html(localStorage.getItem("swagger1"))
     }
-    if (Cookies.get('swagger2') != null){
-        $("#swagger2>textarea").html(Cookies.get('swagger2'))
+    if (localStorage.getItem("swagger2") != null){
+        $("#swagger2>textarea").html(localStorage.getItem("swagger2"))
     }
 
 	var text_swagger1;
@@ -106,9 +106,11 @@
 
 	function compute() {
 		text_swagger1 = $("#swagger1>textarea")[0].value
-		Cookies.set("swagger1", text_swagger1);
+		localStorage.setItem("swagger1", text_swagger1);
 		text_swagger2 = $("#swagger2>textarea")[0].value
-		Cookies.set("swagger2", text_swagger2);
+		localStorage.setItem("swagger2", text_swagger2);
+		// text_swagger2 = $("#swagger2>textarea")[0].value
+		// Cookies.set("swagger2", text_swagger2);
 
 		// console.log(text_swagger1)
 
