@@ -1,88 +1,119 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Editor</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Δ Swagger</title>
 
-  <!-- Jquery -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- D3js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.js" charset="utf-8"></script>
+    <!-- yaml https://github.com/nodeca/js-yaml-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.9.1/js-yaml.min.js"></script>
+
+    <!-- <script src="src/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="https://ace.c9.io/build/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 
 
-  <!-- Bootstrap core -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-  <script type="text/javascript" src="src/yaml.js"></script>
-
-
-  <script src="src/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" type="text/css" href="src/delta_swagger.css">
+    <link rel="stylesheet" type="text/css" href="src/delta_swagger.css">
 
 </head>
 <body>
 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container2">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+<!--                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+ -->                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Δ Swagger</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+<!--                     <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about" data-toggle="modal" data-target="#aboutModal">About</a></li> -->
+                    <li><a href="#contact" data-toggle="modal" data-target="#contactModal">Contact</a></li>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container2">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Δ Swagger</a>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
 
 
 
-<div class="container">
+    <div class="container">
 
-  <div class="divsplit">
-    <pre id="editor"></pre>
-  </div>
+        <!-- Contact -->
+        <div class="modal fade" id="contactModal" role="dialog">
+            <div class="modal-dialog">
 
-  <div class="divsplit">
-    <pre id="editor2"></pre>
-  </div>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Contact</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Pour toutes demandes envoyez moi un email à christophe.anselmo[at]gmail.com</p>
+                    </div>
 
-  <div class="divsplit result">
-    <h2>Objets:</h2>
-    <div id="objects"></div>
-  </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
 
-</div>
-
-<!-- <pre id="editor2" class="divsplit">
-  
-</pre> -->
+            </div>
+        </div>
 
 
+        <!-- https://ace.c9.io/build/src-min/ace.js  -->
+        <div class="divsplit">
+            <pre id="editor"></pre>
+        </div>
+
+        <div class="divsplit">
+            <pre id="editor2"></pre>
+        </div>
+
+        <div class="divsplit result">
+            <!-- style='stroke-width: 0px; background-color: #333;' -->
+            <div class="alert alert-danger" data-alert="alert"></div>
+            <div class="alert alert-warning" data-alert="alert"></div>
+            <div class="alert alert-success" data-alert="alert"></div>
+            <div class="alert alert-info" data-alert="alert"></div>
+
+            <svg id="graph" width="500" height="500" ></svg>
+            <h2>Objets:</h2>
+            <div id="objects"></div>
+        </div>
+
+    </div>
 
 
 <script>
-    
+
+
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/yaml");
+    // editor.resize(true);
+    editor.$blockScrolling = Infinity;
 
     var editor2 = ace.edit("editor2");
     editor2.setTheme("ace/theme/monokai");
     editor2.session.setMode("ace/mode/yaml");
+    // editor2.resize(true);
+    editor2.$blockScrolling = Infinity;
 
     if (localStorage.getItem("swagger") != null){
         editor.setValue(localStorage.getItem("swagger"));
@@ -94,134 +125,240 @@
         editor2.setValue(editor2.getValue(), 1);
     }
 
-    
-    editor.getSession().on('change', function() {
-      compute();
-    });
+</script>
 
-    editor2.getSession().on('change', function() {
-      compute();
-    });
+<script src="src/d3js-graph.js" charset="utf-8"></script>
 
-    // https://stackoverflow.com/questions/10134724/resize-ajax-org-ace-editor-based-on-browsers-size
-    function resizeAce(id) {
-        
-        return $(id).height($(window).height()-100);
+<script>
 
-        // var h = window.innerHeight;
-        // if (h > 360) {
-        //     $(id).css('height', (h - 60).toString() + 'px');
-        // }
-    };
+editor.getSession().on('change', function() {
+    setTimeout(function() {
+        compute();
+    }, 100);
+});
 
-    //listen for changes
-    $(window).resize(resizeAce('#editor'));
-    $(window).resize(resizeAce('#editor2'));
-    //set initially
-    
+editor2.getSession().on('change', function() {
+    setTimeout(function() {
+        compute();
+    }, 100);
+});
 
+// https://stackoverflow.com/questions/10134724/resize-ajax-org-ace-editor-based-on-browsers-size
+function resizeAce(id) {
 
-    // When page is ready
-    $(function() {
-      compute();
-      resizeAce('#editor')
-      resizeAce('#editor2')
-    });
+    return $(id).height($(window).height()-100);
 
-    var text_swagger1;
-    var text_swagger2;
-    // var test1;
+    // var h = window.innerHeight;
+    // if (h > 360) {
+    //     $(id).css('height', (h - 60).toString() + 'px');
+    // }
+};
 
-      
+//listen for changes
+$(window).resize(resizeAce('#editor'));
+$(window).resize(resizeAce('#editor2'));
+//set initially
 
 
-    function compute() {
-      $("#objects").html("")
+
+// When page is ready
+$(function() {
+    compute();
+    resizeAce('#editor')
+    resizeAce('#editor2')
+});
+
+var text_swagger1;
+var text_swagger2;
+var swagger1_objects = {};
+var swagger2_objects = {};
+// var test1;
 
 
-      text_swagger1 = editor.getValue();
-      localStorage.setItem("swagger", text_swagger1);
-
-      text_swagger2 = editor2.getValue();
-      localStorage.setItem("swagger2", text_swagger2);
-      
+var data = {};
+var nodes = [];
+var links = [];
+var link = {};
 
 
-      js_swagger1 = YAML.eval(text_swagger1);
-      str = JSON.stringify(js_swagger1.definitions);
 
-      target = js_swagger1.definitions
-      var textarea_content = "";
-      for (var k in target){
+function CreateDataSet(nodes, links) {
+    data["nodes"] = nodes;
+    data["links"] = links
+    return data
+};
+
+function randomColor(){
+    min = 1;
+    max = 10;
+    return Math.floor(Math.random()*(max-min+1)+min);
+};
+
+
+function CreateNode(name, type) {
+    node = {id: name, type: randomColor()}
+    return node
+};
+
+function CreateLink(source, target, type) {
+    link = {source: source, target:target, type: type}
+    return link
+};
+
+
+function compute() {
+    data = analyseSwaggers();
+    if (data != null) {
+        removeGraph();
+        createGraph(false, data);
+    }
+};
+
+var js_swagger1;
+
+function analyseSwaggers() {
+    $('.alert').fadeOut();
+
+    nodes = [];
+    links = [];
+
+    $("#objects").html("")
+
+
+    text_swagger1 = editor.getValue();
+    localStorage.setItem("swagger", text_swagger1);
+
+    text_swagger2 = editor2.getValue();
+    localStorage.setItem("swagger2", text_swagger2);
+
+
+
+    // js_swagger1 = YAML.eval(text_swagger1);
+    js_swagger1 = jsyaml.load(text_swagger1);
+
+
+    if (!("swagger" in js_swagger1)) return null;
+
+
+    console.log(js_swagger1)
+    str = JSON.stringify(js_swagger1.definitions);
+
+    target = js_swagger1.definitions
+    var textarea_content = "";
+    for (var k in target){
+
+
+        node = CreateNode(k, target[k].type);
+        nodes.push(node);
 
         if (hasUpperCase(k)){
-          $("#objects").append("<h3 class='red' title='Not in snake_case'>" + k + "</h3>");
+            $("#objects").append("<h3 class='red' title='Not in snake_case'>" + k + "</h3>");
         } else {
-          $("#objects").append("<h3>" + k + "</h3>");
+            $("#objects").append("<h3>" + k + "</h3>");
         }
+
+
+        // Add links
+        // Extends Of
+        if (("allOf" in target[k]) && (target[k].allOf.length>1) && ("$ref" in target[k].allOf[0])){
+
+            ref = target[k].allOf[0].$ref.slice(14)
+            link = CreateLink(k, ref, 2)
+            links.push(link);
+
+
+            for (var j in target[k].allOf[1].properties){
+                attribut = target[k].allOf[1].properties[j]
+                $("#objects").append("<br><span>" + j + " - " + attribut.type + "</span>");
+            }
+
+        }
+
+
 
         for (var j in target[k].properties){
 
-          attribut_type = target[k].properties[j].type
+            attribut = target[k].properties[j]
 
-          if (hasUpperCase(j)){
-              $("#objects").append("<br><span class='red' title='Not in snake_case'>" + j + " - " + attribut_type + "</span>");
+            if ((!("type" in attribut)) && (!("$ref" in attribut)))  {
+                $(".alert-danger").html("Error: No type for " + j).fadeIn();
+                return null;
+            }
+
+            attribut_type = attribut.type
+
+
+            if (hasUpperCase(j)){
+                $("#objects").append("<br><span class='red' title='Not in snake_case'>" + j + " - " + attribut_type + "</span>");
             } else {
-              $("#objects").append("<br><span>" + j + " - " + attribut_type + "</span>");
+                $("#objects").append("<br><span>" + j + " - " + attribut_type + "</span>");
             }
 
             if (listWithoutS(j, attribut_type)) {
-              $("#objects").append("<br><span class='purple' title='Lists must end with: s'>" + j + " - " + attribut_type + "</span>");
+                $("#objects").append("<br><span class='purple' title='Lists must end with: s'>" + j + " - " + attribut_type + "</span>");
             }
 
-          }
+            // Add links
+            // Include in
+            if (attribut_type == "array") {
+                if (('items' in attribut) && ('$ref' in attribut.items)) {
+                    ref = attribut.items.$ref.slice(14)
+                    link = CreateLink(ref, k, 1)
+                    links.push(link);
+                }
+            }
 
-
-
-
-
-      }
-    }
-
-
-
-    // if (target.hasOwnProperty(k)) {
-    //          if (hasUpperCase(k)){
-    //            $("#objects").append("<br>" + target[k].type + " - " + k)
-    //          }
-    //        }
-
-      // $("#objects").html(textarea_content);
-
-
-    function listWithoutS(attribut_name, attribut_type) {
-        if ((attribut_name.slice(-1) != "s") && attribut_type == 'array') {
-            return true;
         }
-        return false;
+
     }
 
+    return CreateDataSet(nodes, links);
+}
 
-    function hasUpperCase(str) {
-        if(str.toLowerCase() != str) {
-            return true;
-        }
-        return false;
+//
+
+// if (target.hasOwnProperty(k)) {
+//          if (hasUpperCase(k)){
+//            $("#objects").append("<br>" + target[k].type + " - " + k)
+//          }
+//        }
+
+// $("#objects").html(textarea_content);
+
+
+// DETECTION DES ACCENTS
+
+function listWithoutS(attribut_name, attribut_type) {
+    if ((attribut_name.slice(-1) != "s") && attribut_type == 'array') {
+        return true;
     }
+    return false;
+}
 
-    // window.onload = function() {
-    //        var test1 = YAML.eval("---\n- one\n- two");
-    //        var test2 = YAML.eval("---\none: two");
 
-    //        YAML.fromURL("example.yml", function(data) {
-    //            var errors = YAML.getErrors();
-    //            if(errors.length == 0)
-    //                document.getElementById("out").innerHTML = "Done! Took " + YAML.getProcessingTime() + " miliseconds.";
-    //            else {
-    //                document.getElementById("out").innerHTML = errors.join("<br>");
-    //            }
-    //        });
-    //    };
+function hasUpperCase(str) {
+    if(str.toLowerCase() != str) {
+        return true;
+    }
+    return false;
+}
+
+
+
+
+// window.onload = function() {
+//        var test1 = YAML.eval("---\n- one\n- two");
+//        var test2 = YAML.eval("---\none: two");
+
+//        YAML.fromURL("example.yml", function(data) {
+//            var errors = YAML.getErrors();
+//            if(errors.length == 0)
+//                document.getElementById("out").innerHTML = "Done! Took " + YAML.getProcessingTime() + " miliseconds.";
+//            else {
+//                document.getElementById("out").innerHTML = errors.join("<br>");
+//            }
+//        });
+//    };
 
 
 
