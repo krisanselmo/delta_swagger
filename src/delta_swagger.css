@@ -9,7 +9,7 @@ body {
 pre {
   border: 0px;
   border-radius: 0px;
- 
+
 }
 
 .container {
@@ -21,11 +21,11 @@ pre {
 
 
 .divsplit {
-  
+
   display: inline-block;
   vertical-align: top;
   width: 32%;
-  height: 100%; 
+  height: 100%;
 }
 
 #editor,
@@ -73,13 +73,13 @@ pre {
 
 /* SVG */
 
-/*
-svg {
-  background-color: #FFF;
-  cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}*/
+.links line {
+  stroke-opacity: 1;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.nodes circle {
+  stroke: #333;
+  stroke-width: 1.5px;
+}

@@ -1,3 +1,7 @@
+
+// Based on :
+// https://stackoverflow.com/questions/39439608/d3-4-0-graph-with-directed-edges-and-labels
+
 var svg = d3.select("svg");
 
 var width = svg.attr("width");
@@ -11,8 +15,8 @@ function initGraph(){
 
     svg.append("defs").append("marker")
     .attr("id", "arrow")
-    // .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 20)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 24)
     .attr("refY", 0)
     .attr("markerWidth", 8)
     .attr("markerHeight", 8)
