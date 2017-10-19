@@ -77,27 +77,28 @@
 
 
         <!-- https://ace.c9.io/build/src-min/ace.js  -->
-        <div class="divsplit">
+
+        <div class="editor1">   
             <pre id="editor">Paste a swagger here ! (YAML format)</pre>
         </div>
 
-        <div class="divsplit">
+        <div class="editor2">   
             <pre id="editor2"></pre>
         </div>
 
-        <div class="divsplit result">
+        <div class="result">
             <!-- style='stroke-width: 0px; background-color: #333;' -->
             <div class="alert alert-danger" data-alert="alert"></div>
             <div class="alert alert-warning" data-alert="alert"></div>
             <div class="alert alert-success" data-alert="alert"></div>
             <div class="alert alert-info" data-alert="alert"></div>
 
-            <svg id="graph" width="500" height="500" ></svg>
+            
             <h2>Objets:</h2>
             <div id="objects"></div>
+            <h2>Graph:</h2>
+            <svg id="graph" width="500" height="500" ></svg>
         </div>
-
-    </div>
 
 
 <script>
@@ -106,14 +107,21 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/yaml");
+    editor.session.setUseWrapMode(true);
     // editor.resize(true);
     editor.$blockScrolling = Infinity;
+    editor.setOption("showPrintMargin", false)
+    // editor.session.setOption('indentedSoftWrap', false);
+    
 
     var editor2 = ace.edit("editor2");
     editor2.setTheme("ace/theme/monokai");
     editor2.session.setMode("ace/mode/yaml");
+    editor2.session.setUseWrapMode(true);
     // editor2.resize(true);
     editor2.$blockScrolling = Infinity;
+    editor2.setShowPrintMargin(false);
+    
 
     if (localStorage.getItem("swagger") != null){
         editor.setValue(localStorage.getItem("swagger"));
@@ -146,7 +154,7 @@ editor2.getSession().on('change', function() {
 // https://stackoverflow.com/questions/10134724/resize-ajax-org-ace-editor-based-on-browsers-size
 function resizeAce(id) {
 
-    return $(id).height($(window).height()-100);
+    return $(id).height($(window).height()-67);
 
     // var h = window.innerHeight;
     // if (h > 360) {

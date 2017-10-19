@@ -1,7 +1,7 @@
 
 body {
     /*overflow: hidden;*/
-    padding-top: 50px;
+    padding-top: 51px;
     background-color: #2f3129;
     /*overflow: hidden;*/
 }
@@ -20,39 +20,33 @@ pre {
 }
 
 
-.divsplit {
-
+.editor1{
   display: inline-block;
-  vertical-align: top;
-  width: 32%;
-  height: 100%;
-}
-
-#editor,
-#editor2 {
-    margin: 0;
-    position: relative;
-    /*top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;*/
-    width: 100%;
-
-     border-top-width: 10px;
-  margin-top: 10px;
-
+  position: fixed;
+  left: 0;
+   width: 33%;
+  margin: 0 auto;
 }
 
 
-
+.editor2{
+  display: inline-block;
+  position: fixed;
+   width: 33%;
+  left: 33%;
+  margin: 0 auto;
+}
 
 
 .result{
+  position: relative;
+  display: inline-block;
   text-align: left;
   background-color: #eaeaea;
   padding-left: 15px;
   padding-bottom: 20px;
-  overflow-y: scroll;
+  left: 66%;
+  width: 33%;
 }
 
 
